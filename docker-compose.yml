@@ -1,0 +1,27 @@
+# If you receive the following error, running the proceeding command seems to resolve it
+#  Problem:
+#   - data-store_1  | ERROR: bootstrap checks failed
+#   - data-store_1  | max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
+#
+#  Solution:
+#   - sudo sysctl -w vm.max_map_count=262144  
+data-store:
+  image: elasticsearch:latest
+  hostname: elasticsearch
+  ports:
+    - "9200:9200"
+
+etl:
+  image: logstash:latest
+  volumes: 
+    - ./resources/logstash/:/opt/logstash/
+  command: -f /opt/logstash/pipeline.conf
+  links: 
+    - data-store
+
+visualisation:
+  image: kibana:latest
+  ports:
+    - "5601:5601"
+  links: 
+    - data-store

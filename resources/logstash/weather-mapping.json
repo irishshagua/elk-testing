@@ -1,44 +1,13 @@
 {
-  "template": "weather-mapping",
-  "settings": {
-    "number_of_shards": 1
-  },
+  "order": 0,
+  "template": "weather",
   "mappings": {
-    "weather": {
+    "_default_": {
       "properties": {
-        "dublin" : {
+        "detail": {
           "properties": {
-            "detail": {
-              "properties": {
-                "location" : { "type": "geo_point" }
-              }
-            }
-          }
-        },
-        "kildare" : {
-          "properties": {
-            "detail": {
-              "properties": {
-                "location" : { "type": "geo_point" }
-              }
-            }
-          }
-        },
-        "galway" : {
-          "properties": {
-            "detail": {
-              "properties": {
-                "location" : { "type": "geo_point" }
-              }
-            }
-          }
-        },
-        "cork" : {
-          "properties": {
-            "detail": {
-              "properties": {
-                "location" : { "type": "geo_point" }
-              }
+            "location": {
+                "type": "geo_point"
             }
           }
         }
